@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusBlogPlugin\Form\Type;
 
-use MonsieurBiz\SyliusBlogPlugin\Entity\Tag;
 use MonsieurBiz\SyliusBlogPlugin\Entity\TagInterface;
 use MonsieurBiz\SyliusBlogPlugin\Repository\AuthorRepositoryInterface;
 use MonsieurBiz\SyliusBlogPlugin\Repository\TagRepositoryInterface;
@@ -36,6 +35,7 @@ final class ArticleType extends AbstractResourceType
         private AuthorRepositoryInterface $authorRepository,
         string $dataClass,
         array $validationGroups = [],
+        private string $tagClass,
     ) {
         parent::__construct($dataClass, $validationGroups);
     }
@@ -67,7 +67,7 @@ final class ArticleType extends AbstractResourceType
                 'label' => 'monsieurbiz_blog.form.article.tags',
                 'required' => true,
                 'multiple' => true,
-                'class' => Tag::class,
+                'class' => $this->tagClass,
                 'query_builder' => function (TagRepositoryInterface $tagRepository) {
                     return $tagRepository->createListQueryBuilder($this->localeContext->getLocaleCode());
                 },

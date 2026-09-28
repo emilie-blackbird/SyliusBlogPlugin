@@ -5,6 +5,8 @@ services:
         public: false
         bind:
             bool $enableCaseStudies: '%monsieurbiz_blog.enable_case_studies%'
+            string $tagClass: '%monsieurbiz_blog.model.tag.class%'
+            string $articleClass: '%monsieurbiz_blog.model.article.class%'
 
     MonsieurBiz\SyliusBlogPlugin\:
         resource: '../../*'

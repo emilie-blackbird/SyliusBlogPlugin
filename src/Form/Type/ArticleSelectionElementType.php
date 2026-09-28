@@ -19,6 +19,7 @@ use Sylius\Bundle\ResourceBundle\Form\DataTransformer\ResourceToIdentifierTransf
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +33,7 @@ final class ArticleSelectionElementType extends AbstractType
         private readonly ChannelContextInterface $channelContext,
         private readonly LocaleContextInterface $localeContext,
         private bool $enableCaseStudies,
+        #[Autowire('%monsieurbiz_blog.model.article.class%')]
         private string $articleClass,
     ) {
     }

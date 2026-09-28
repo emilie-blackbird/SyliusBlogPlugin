@@ -25,6 +25,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -48,6 +49,7 @@ class ArticlesByTagsUiElementType extends AbstractType
         private readonly TagRepositoryInterface $tagRepository,
         private readonly LocaleContextInterface $localeContext,
         private bool $enableCaseStudies,
+        #[Autowire('%monsieurbiz_blog.model.tag.class%')]
         private string $tagClass,
     ) {
     }

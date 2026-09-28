@@ -24,6 +24,7 @@ use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,6 +36,7 @@ final class ArticleType extends AbstractResourceType
         private AuthorRepositoryInterface $authorRepository,
         string $dataClass,
         array $validationGroups = [],
+        #[Autowire('%monsieurbiz_blog.model.tag.class%')]
         private string $tagClass,
     ) {
         parent::__construct($dataClass, $validationGroups);
